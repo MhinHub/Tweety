@@ -1,12 +1,15 @@
 import Image from "next/image";
-import { RouterInputs, RouterOutputs, trpc } from "../utils/trpc";
+import type { RouterInputs, RouterOutputs } from "../utils/trpc";
+import { trpc } from "../utils/trpc";
 import { CreateTweet } from "./CreateTweet";
 
 import { useEffect, useState } from "react";
 import { AiFillHeart } from "react-icons/ai";
-import {
+import type {
   InfiniteData,
-  QueryClient,
+  QueryClient
+} from "@tanstack/react-query";
+import {
   useQueryClient,
 } from "@tanstack/react-query";
 
@@ -40,12 +43,8 @@ function useScrollPosition() {
   const [scrollPosition, setScrollPosition] = useState(0);
 
   const handleScroll = () => {
-    const height =
-      document.documentElement.scrollHeight -
-      document.documentElement.clientHeight;
-    const winScroll =
-      document.body.scrollTop || document.documentElement.scrollTop;
-
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
     const scrolled = (winScroll / height) * 100;
     setScrollPosition(scrolled);
   };
